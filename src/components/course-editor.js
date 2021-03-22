@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {Link, useParams} from "react-router-dom";
 import moduleReducer from "../reducers/modules-reducer";
 import lessonReducer from "../reducers/lesson-reducer";
+import widgetReducer from "../reducers/widget-reducer";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import ModuleList from "./module-list";
@@ -11,7 +12,8 @@ import TopicPills from "./course-editor/topic-pills";
 
 const reducer = combineReducers({
     moduleReducer: moduleReducer,
-    lessonReducer: lessonReducer
+    lessonReducer: lessonReducer,
+    widgetReducer: widgetReducer
 })
 
 // const store = createStore(moduleReducer)

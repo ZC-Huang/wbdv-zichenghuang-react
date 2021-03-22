@@ -6,10 +6,12 @@ const EditableItem = (
         to,
         item,
         updateItem,
-        deleteItem
+        deleteItem,
     }) => {
     const [editing, setEditing] = useState(false)
     const [itemCache, setItemCache] = useState(item)
+    const [widgets, setWidgets] = useState([])
+    const [editingWidget, setEditingWidget] = useState({});
     return(
         <>
             {
