@@ -3,21 +3,20 @@ import {Link} from "react-router-dom";
 
 const EditableItem = (
     {
-        to="/somewhere/to/go",
-        deleteItem,
+        to,
+        item,
         updateItem,
-        item={title: "Some Title", _id:"ABC"},
-        active
+        deleteItem
     }) => {
     const [editing, setEditing] = useState(false)
-    const [cachedItem, setCahedItem] = useState(item)
-    return (
+    const [itemCache, setItemCache] = useState(item)
+    return(
         <>
             {
                 !editing &&
                 <>
-                    <Link className={`nav-link ${active?'active':''}`} to={to}>
-                        {item.title} {JSON.stringify(active)}
+                    <Link to={to}>
+                        {item.title}
                     </Link>
                     <i onClick={() => setEditing(true)} className="fas fa-edit"></i>
                 </>
@@ -26,15 +25,11 @@ const EditableItem = (
                 editing &&
                 <>
                     <input
-                        onChange={(e) =>
-                            setCahedItem({
-                                ...cachedItem,
-                                title: e.target.value
-                            })}
-                        value={cachedItem.title}/>
+                        onChange={(e) => setItemCache({...itemCache, title: e.target.value})}
+                        value={itemCache.title}/>
                     <i onClick={() => {
                         setEditing(false)
-                        updateItem(cachedItem)
+                        updateItem(itemCache)
                     }} className="fas fa-check"></i>
                     <i onClick={() => deleteItem(item)} className="fas fa-times"></i>
                 </>
